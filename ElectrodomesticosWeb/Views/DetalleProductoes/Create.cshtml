@@ -7,11 +7,11 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "DetalleProductoes", null, FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
         <h4>DetalleProducto</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
