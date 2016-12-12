@@ -16,6 +16,7 @@ namespace ElectrodomesticosWeb.Controllers
         private ElectrodomesticosWebContext db = new ElectrodomesticosWebContext();
 
         // GET: DetalleProductoes
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var detalleProductos = db.DetalleProductos.Include(d => d.Producto);
@@ -23,6 +24,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: DetalleProductoes/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: DetalleProductoes/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.ProductoId = new SelectList(db.Productos, "Id", "Nombre");
@@ -86,6 +89,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: DetalleProductoes/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -119,6 +123,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: DetalleProductoes/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

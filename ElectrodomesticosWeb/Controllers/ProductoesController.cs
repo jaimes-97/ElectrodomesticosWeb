@@ -16,6 +16,7 @@ namespace ElectrodomesticosWeb.Controllers
         private ElectrodomesticosWebContext db = new ElectrodomesticosWebContext();
 
         // GET: Productoes
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var productos = db.Productos.Include(p => p.Categoria);
@@ -23,6 +24,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: Productoes/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: Productoes/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CategoriaId = new SelectList(db.Categorias, "Id", "Nombre");
@@ -63,6 +66,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: Productoes/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -96,6 +100,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: Productoes/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
