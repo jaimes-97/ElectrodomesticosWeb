@@ -1,6 +1,7 @@
-﻿$("document").ready(function () {
-
-    var imagenes = new Array("electro1.jpg", "electro.jpg");
+﻿$(document).ready(function () {
+   
+    alert("fef");
+   /* var imagenes = new Array("electro1.jpg", "electro.jpg");
 
     function rotarImagenes() {
         var indice = 0;
@@ -12,11 +13,18 @@
 
     }
 
+   
+
     function timer() {
 
         rotarImagenes();
 
         setInterval(rotarImagenes, 2000);
     }
-    onload = timer();
+    onload = timer();*/
+
+    $(".imgProducto").click(function () {
+        alert("ass");
+
+    });
     });
