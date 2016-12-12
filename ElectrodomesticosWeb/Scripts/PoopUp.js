@@ -1,7 +1,9 @@
 ﻿$(document).ready(function () {
 
     $('.lightbox_trigger').click(function (e) {
-
+        $('body').css("overflow-y", "hidden");
+        $('body').css("overflow-x", "hidden");
+     
         
         e.preventDefault();
 
@@ -32,6 +34,9 @@
 
             //insertar en el html el lightbox
             $('body').append(lightbox);
+            //bloquear el scroll
+        
+           
         }
 
 
@@ -45,6 +50,8 @@
     $('body').on('click', "#lightbox", function () { 
         
         $('#lightbox').hide();
+        $('body').css("overflow-y", "scroll");
+        $('body').css("overflow-x", "scroll");
     });
    
 
