@@ -16,12 +16,14 @@ namespace ElectrodomesticosWeb.Controllers
         private ElectrodomesticosWebContext db = new ElectrodomesticosWebContext();
 
         // GET: Categorias
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Categorias.ToList());
         }
 
         // GET: Categorias/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: Categorias/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -60,6 +63,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: Categorias/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +95,7 @@ namespace ElectrodomesticosWeb.Controllers
         }
 
         // GET: Categorias/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
