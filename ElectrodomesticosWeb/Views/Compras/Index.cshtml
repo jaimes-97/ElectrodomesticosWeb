@@ -6,46 +6,58 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NombreCliente)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumTarjeta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th></th>
+
+
+<table class="table table-hover">
+
+
+    <thead>
+    <th>
+        Imagen
+    </th>
+
+    <th>
+        Descripcion
+    </th>
+
+    <th>
+        Precio
+    </th>
+    </thead>
+    <tr class="success">
+        <td>
+            imagen
+        </td>
+
+        <td>
+            descripcion
+        </td>
+
+        <td>
+            precio
+        </td>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreCliente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumTarjeta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+
+    
+
+
 
 </table>
+
+
+<div style="background-color:indianred; height:300px;width:300px;border-top:100px;">
+    <br />
+
+    @using (Html.BeginForm("carrito", "Home", FormMethod.Get, new { @class = "navbar-form navbar-right" }))//formulario de busqueda
+    {
+        <div class="form-group">
+            @Html.TextBox("Nombre", null, new { @class = "form-control", @placeholder = "Nombre" })
+            @Html.TextBox("Direccion", null, new { @class = "form-control", @placeholder = "Direccion" })<br />
+            @Html.TextBox("Telefono", null, new { @class = "form-control", @placeholder = "Telefono" })
+            @Html.TextBox("NumTarjeta", null, new { @class = "form-control", @placeholder = "NumTarjeta" })<br /><br />
+            <button type="submit" class="btn btn-default">Enviar Pedido</button>
+        </div>
+
+    }
+</div>
