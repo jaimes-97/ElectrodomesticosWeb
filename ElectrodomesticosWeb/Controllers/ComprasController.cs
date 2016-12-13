@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -14,11 +15,57 @@ namespace ElectrodomesticosWeb.Controllers
     public class ComprasController : Controller
     {
         private ElectrodomesticosWebContext db = new ElectrodomesticosWebContext();
+        public List<DetalleCompra> listaCompras;
+        private bool encontrado;
 
         // GET: Compras
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View(db.Compras.ToList());
+            Debug.WriteLine("Index");
+            foreach (DetalleProducto dp in db.DetalleProductos.ToList()){
+                if (dp.Id == id)
+                {
+                    Debug.WriteLine("Llego");
+                    if (Session["DetalleProductos"] == null)
+                    {
+                        Debug.WriteLine("No hay datos, hacer nuevo");
+                        DetalleCompra dc = new DetalleCompra();
+                        dc.DetalleProducto = dp;
+                        dc.DetalleProductoId = id;
+                        dc.Cantidad = 1;
+                        listaCompras = new List<DetalleCompra>();
+                        listaCompras.Add(dc);
+                        Session["DetalleProductos"] = listaCompras;
+                        Debug.WriteLine(listaCompras.Count);
+                        break;
+                    }
+                    else {
+                        listaCompras = (List<DetalleCompra>)Session["DetalleProductos"];
+                        foreach (DetalleCompra dCompra in listaCompras) {
+                            Debug.WriteLine("comparar: "+ dCompra.DetalleProducto.Id +" : "+ dp.Id);
+                            if (dCompra.DetalleProducto.Id == dp.Id)
+                            {
+                                encontrado = true;
+                                dCompra.Cantidad += 1;
+                                Debug.WriteLine("Añadir cantidad");
+                                Session["DetalleProductos"] = listaCompras;
+                                break;
+                            }
+                        }
+                        if (encontrado == false)
+                        {
+                            Debug.WriteLine("Añadir otro detalle compra");
+                            DetalleCompra dc = new DetalleCompra();
+                            dc.DetalleProducto = dp;
+                            dc.DetalleProductoId = id;
+                            dc.Cantidad = 1;
+                            listaCompras.Add(dc);
+                            Session["DetalleProductos"] = listaCompras;
+                        }
+                    }
+                }
+            }
+            return View(listaCompras.ToList());
         }
 
         // GET: Compras/Details/5
