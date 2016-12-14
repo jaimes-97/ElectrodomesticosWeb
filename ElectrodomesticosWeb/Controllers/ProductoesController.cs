@@ -15,6 +15,15 @@ namespace ElectrodomesticosWeb.Controllers
     {
         private ElectrodomesticosWebContext db = new ElectrodomesticosWebContext();
 
+        public ActionResult Index(string categoria)
+        {
+           var productos = db.Productos.Include(p => p.Categoria);
+           
+            
+            return View(productos.ToList());
+
+        }
+
         // GET: Productoes
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
