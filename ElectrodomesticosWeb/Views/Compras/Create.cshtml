@@ -57,7 +57,7 @@
 }
 
 <div class="boton">
-    @Html.ActionLink("Seguir comprando", "Index","Home")
+    @Html.ActionLink("Seguir comprando", "Index", "Home")
 </div>
 
 <table class="table table-hover">
@@ -87,11 +87,18 @@
     <th>
         Precio
     </th>
+
+    <th>
+        Total
+    </th>
 </thead>
 
-
+    @{ 
+        Double totalCompra = 0 ;
+    }
     @foreach (var item in Model)
     {
+        totalCompra +=(Double) item.TotalCompra;
         <tr class="success">
             <td>
                 @if (@item.DetalleProducto.Imagen != null)
@@ -117,21 +124,22 @@
                 @Html.DisplayFor(modelItem => item.DetalleProducto.precio)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.TotalCompra)
+            </td>
+            <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             </td>
+
         </tr>
     }
-
-
-
-
-
 
 
 </table>
 
 
-
+<div>
+  <p>Total de la compra: @totalCompra</p> 
+</div>
 
 
 

@@ -55,7 +55,9 @@ namespace ElectrodomesticosWeb.Controllers
                         dc.DetalleProducto = dp;
                         dc.DetalleProductoId = id;
                         dc.Cantidad = 1;
+                        dc.TotalCompra = dc.Cantidad * dp.precio;
                         listaCompras = new List<DetalleCompra>();
+                        
                         listaCompras.Add(dc);
                         Session["DetalleProductos"] = listaCompras;
                         Debug.WriteLine(listaCompras.Count);
@@ -71,6 +73,7 @@ namespace ElectrodomesticosWeb.Controllers
                             {
                                 encontrado = true;
                                 dCompra.Cantidad += 1;
+                                dCompra.TotalCompra = dCompra.Cantidad * dCompra.DetalleProducto.precio;
                                 Debug.WriteLine("Añadir cantidad");
                                 Session["DetalleProductos"] = listaCompras;
                                 break;
@@ -83,6 +86,7 @@ namespace ElectrodomesticosWeb.Controllers
                             dc.DetalleProducto = dp;
                             dc.DetalleProductoId = id;
                             dc.Cantidad = 1;
+                            dc.TotalCompra = dc.Cantidad * dp.precio;
                             listaCompras.Add(dc);
                             Session["DetalleProductos"] = listaCompras;
                         }
