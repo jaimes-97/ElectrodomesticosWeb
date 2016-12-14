@@ -113,8 +113,11 @@ namespace ElectrodomesticosWeb.Controllers
                 foreach (DetalleCompra dc in listaDetalle) {
                     dc.CompraId = compra.Id;
                     dc.Compra = compra;
+                    dc.DetalleProducto.cantidad -= dc.Cantidad;
                     Debug.WriteLine("Detalla compra cantidad: " + dc.Cantidad);
+                    Debug.WriteLine("Detalla producto cantidad: " + dc.DetalleProducto.cantidad);
                     db.DetalleCompras.Add(dc);
+                    db.Entry(dc.DetalleProducto).State = EntityState.Modified;
                     db.SaveChanges();
                 }
 
