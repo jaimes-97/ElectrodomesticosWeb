@@ -1,4 +1,4 @@
-﻿@model ElectrodomesticosWeb.Models.Compra
+﻿@model IEnumerable<ElectrodomesticosWeb.Models.DetalleCompra>
 
 @{
     ViewBag.Title = "Create";
@@ -7,43 +7,43 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Compra</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.NombreCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("NombreCliente", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NombreCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NombreCliente, "", new { @class = "text-danger" })
+                @Html.Editor("NombreCliente", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("NombreCliente", "error", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NumTarjeta, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("NumTarjeta", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NumTarjeta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumTarjeta, "", new { @class = "text-danger" })
+                @Html.Editor("NumTarjeta", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("NumTarjeta", "error", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+           @Html.Label("Direccion", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                @Html.Editor("Direccion", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("Direccion", "error", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Telefono", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                @Html.Editor("Telefono", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("Telefono", "error", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -54,6 +54,101 @@
         </div>
     </div>
 }
+
+
+<table class="table table-hover">
+
+
+<thead>
+    <th>
+        Imagen
+    </th>
+
+    <th>
+        Nombre Producto
+    </th>
+
+    <th>
+        Marca
+    </th>
+
+    <th>
+        Color
+    </th>
+
+    <th>
+        Cantidad
+    </th>
+
+    <th>
+        Precio
+    </th>
+</thead>
+
+
+    @foreach (var item in Model)
+    {
+        <tr class="success">
+            <td>
+                @if (@item.DetalleProducto.Imagen != null)
+                {
+
+                    <img class="lightbox_trigger" src="~/Imagenes/@item.DetalleProducto.Imagen.ImageName" height="200px" width="200px" />
+
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DetalleProducto.Producto.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DetalleProducto.marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DetalleProducto.Color)   
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DetalleProducto.precio)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            </td>
+        </tr>
+    }
+<tr class="success">
+    <td>
+        imagen
+    </td>
+
+    <td>
+        Nombre producto
+    </td>
+
+    <td>
+        marca
+    </td>
+    <td>
+        color
+    </td>
+
+    <td>
+        cantidad
+    </td>
+
+    <td>
+        precio
+    </td>
+</tr>
+
+
+
+
+
+
+</table>
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

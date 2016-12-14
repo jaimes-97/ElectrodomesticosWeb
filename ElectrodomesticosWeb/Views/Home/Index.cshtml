@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<ElectrodomesticosWeb.Models.DetalleProducto>
+﻿@model IEnumerable<ElectrodomesticosWeb.Models.DetalleProducto>
 
 
 @{
@@ -227,13 +226,9 @@
 
 
 
-                @using (Html.BeginForm("index", "DetalleProducto", FormMethod.Get))
-                {
-                    
-                    <input type="submit" value="Añadir al carrito" />
-
-
-                }
+                <dt>
+                    @Html.ActionLink("Añadir al carrito", "create", "Compras", new { Id = item.Id}, null)
+                </dt>
 
 
          

@@ -18,13 +18,12 @@
             @Html.DisplayNameFor(model => model.NumTarjeta)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Direccion)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Telefono)
         </th>
         <th></th>
     </tr>
+
+
 
 @foreach (var item in Model) {
     <tr>
@@ -33,9 +32,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NumTarjeta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Direccion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Telefono)
@@ -49,3 +45,5 @@
 }
 
 </table>
+
+

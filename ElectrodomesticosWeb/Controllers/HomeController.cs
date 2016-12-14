@@ -13,6 +13,7 @@ namespace ElectrodomesticosWeb.Controllers
         private ElectrodomesticosWebContext db = new ElectrodomesticosWebContext();
         public ActionResult Index()
         {
+            Console.WriteLine("HOLA HOME");
             var DetalleProductos = db.DetalleProductos;
             return View(DetalleProductos.ToList());
             
