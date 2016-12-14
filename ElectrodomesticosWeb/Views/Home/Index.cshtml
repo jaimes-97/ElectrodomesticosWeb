@@ -55,11 +55,12 @@
         }
 
         .productoBox{
-
+   border:1px solid black;
+   
            
         }
 
-        .productoBox input[type=submit]{
+         input[type=submit]{
 
    background: #e81717;
   background-image: -webkit-linear-gradient(top, #e81717, #f0bdbd);
@@ -83,12 +84,18 @@
 
 
 
+         .productoBox *{
 
+             font-family:Courier New;
+             text-align:center;
+             background-color:#F2F2F2
+             
+         }
        
  
 
 
- .productoBox input[type=submit]:hover {
+  input[type=submit]:hover {
       background: #990b0b;
   background-image: -webkit-linear-gradient(top, #990b0b, #c295b4);
   background-image: -moz-linear-gradient(top, #990b0b, #c295b4);
@@ -98,6 +105,8 @@
   text-decoration: none;
   
 }
+
+  
 
 </style>
 
@@ -109,7 +118,10 @@
 
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+   
+    
+    
+     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -170,27 +182,27 @@
 
 
 
-
-
-
+<br />
 <div class="row">
 @foreach (var item in Model)
 {
 
         <div class="col-md-4" style="margin-bottom:50px">
-
-            @if (@item.Imagen != null)
-            {
-
-                <img class="lightbox_trigger" src="~/Imagenes/@item.Imagen.ImageName" height="200px" width="200px" />
-
-                
-            }
-
-
-            
-
             <div class="productoBox">
+                @if (@item.Imagen != null)
+                {
+
+                    <img class="lightbox_trigger" style="width:100%"  src="~/Imagenes/@item.Imagen.ImageName" height="200px" />
+
+
+                }
+
+
+
+
+
+
+
 
 
 
@@ -198,22 +210,28 @@
                 <dt>
                     @Html.DisplayFor(modelItem => item.Producto.Nombre)
                 </dt>
+
                 <dt>
                     @Html.DisplayFor(modelItem => item.Color)
                 </dt>
+
                 <dt>
                     @Html.DisplayFor(modelItem => item.marca)
                 </dt>
+
                 <dt>
                     @Html.DisplayFor(modelItem => item.precio)
                 </dt>
+            </div>
+
+
 
                 <dt>
                     @Html.ActionLink("Añadir al carrito", "create", "Compras", new { Id = item.Id}, null)
                 </dt>
 
 
-            </div>
+         
 
 
         </div>

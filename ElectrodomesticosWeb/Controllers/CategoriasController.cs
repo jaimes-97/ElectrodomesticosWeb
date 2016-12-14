@@ -16,7 +16,7 @@ namespace ElectrodomesticosWeb.Controllers
         private ElectrodomesticosWebContext db = new ElectrodomesticosWebContext();
 
         // GET: Categorias
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Categorias.ToList());

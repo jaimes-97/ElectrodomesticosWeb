@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ElectrodomesticosWeb.DAL;
 using ElectrodomesticosWeb.Models;
+using System.Diagnostics;
 
 namespace ElectrodomesticosWeb.Controllers
 {
@@ -59,7 +60,7 @@ namespace ElectrodomesticosWeb.Controllers
             if (ModelState.IsValid)
             {
 
-                if (upload != null && upload.ContentLength > 0)
+             /*   if (upload != null && upload.ContentLength > 0)
                 {
 
                     string pic = System.IO.Path.GetFileName(upload.FileName);
@@ -78,6 +79,7 @@ namespace ElectrodomesticosWeb.Controllers
                     
 
                 }
+                */
 
                 db.DetalleProductos.Add(detalleProducto);
                 db.SaveChanges();
@@ -101,7 +103,7 @@ namespace ElectrodomesticosWeb.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductoId = new SelectList(db.Productos, "Id", "Nombre", detalleProducto.ProductoId);
+            ViewBag.ProductoId = new SelectList(db.Productos, "Id", "Nombre",detalleProducto.ProductoId);
             return View(detalleProducto);
         }
 
@@ -110,10 +112,38 @@ namespace ElectrodomesticosWeb.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Color,marca,cantidad,precio,ProductoId")] DetalleProducto detalleProducto)
+        public ActionResult Edit([Bind(Include = "Id,Color,marca,cantidad,precio,ImagenId,Imagen,ProductoId")] DetalleProducto detalleProducto, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+
+                if (upload != null && upload.ContentLength > 0)
+                {
+
+                    string pic = System.IO.Path.GetFileName(upload.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Imagenes"), pic);
+                    upload.SaveAs(path);
+
+
+
+                    var photo = new Imagen
+                    {
+                        ImageName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Photo
+                    };
+                   
+
+                    detalleProducto.Imagen = photo;
+
+
+
+
+
+
+                }
+
+                
+
                 db.Entry(detalleProducto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
