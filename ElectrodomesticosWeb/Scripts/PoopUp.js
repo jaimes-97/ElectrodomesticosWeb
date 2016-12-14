@@ -48,7 +48,7 @@
 
     //Clickear en cualquier lado para desactivar el lightbox
     $('body').on('click', "#lightbox", function () { 
-        
+       
         $('#lightbox').hide();
         $('body').css("overflow-y", "scroll");
         $('body').css("overflow-x", "scroll");
