@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ElectrodomesticosWeb.DAL;
+using ElectrodomesticosWeb.Models;
 
 
 namespace ElectrodomesticosWeb.Controllers
@@ -14,8 +15,16 @@ namespace ElectrodomesticosWeb.Controllers
         public ActionResult Index()
         {
             Console.WriteLine("HOLA HOME");
-            var DetalleProductos = db.DetalleProductos;
-            return View(DetalleProductos.ToList());
+            var DetalleProductos = db.DetalleProductos.ToList();
+            List<DetalleProducto> existentes = new List<DetalleProducto>();
+            foreach(DetalleProducto dp in DetalleProductos)
+            {
+                if(dp.cantidad >0)
+                {
+                    existentes.Add(dp);
+                }
+            }
+            return View(existentes.ToList());
             
         }
 

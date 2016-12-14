@@ -118,7 +118,7 @@ namespace ElectrodomesticosWeb.Controllers
                     db.SaveChanges();
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             return View(compra);

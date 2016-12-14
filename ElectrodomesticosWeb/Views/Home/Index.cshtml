@@ -104,9 +104,17 @@
        
  
 
+         .actLink{
+             text-decoration:none;
+            color:white;
 
+         }
  
+         .actLink:hover{
+            
+            color:white;
 
+         }
   
 
 </style>
@@ -232,7 +240,8 @@
             <dt>
                 <div class="add">
 
-                    @Html.ActionLink("Añadir al carrito", "create", "Compras", new { Id = item.Id }, null)
+                    @Html.ActionLink("Añadir al carrito", "create", "Compras", new { Id = item.Id }, new { @class="actLink"})
+
                 </div>
         </dt>
 

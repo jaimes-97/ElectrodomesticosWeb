@@ -5,10 +5,13 @@
 }
 
 
-<style>
-  
+<script>
+    function Alert() {
+        alert("Su compra se registro exitosamente");
+    }
+    
 
-</style>
+</script>
 <h2>Create</h2>
 
 
@@ -25,7 +28,7 @@
             @Html.Label("NombreCliente", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.Editor("NombreCliente", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessage("NombreCliente", "error", new { @class = "text-danger" })
+                @Html.ValidationMessage("NombreCliente", "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -33,7 +36,7 @@
             @Html.Label("NumTarjeta", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.Editor("NumTarjeta", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessage("NumTarjeta", "error", new { @class = "text-danger" })
+                @Html.ValidationMessage("NumTarjeta", "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -41,7 +44,7 @@
            @Html.Label("Direccion", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.Editor("Direccion", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessage("Direccion", "error", new { @class = "text-danger" })
+                @Html.ValidationMessage("Direccion", "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -49,13 +52,13 @@
             @Html.Label("Telefono", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.Editor("Telefono", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessage("Telefono", "error", new { @class = "text-danger" })
+                @Html.ValidationMessage("Telefono", "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Guardar Pedido" class="btn btn-default" onclick="Alert();"/>
             </div>
         </div>
     </div>
