@@ -19,10 +19,32 @@ namespace ElectrodomesticosWeb.Controllers
         private bool encontrado;
 
         // GET: Compras
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            Debug.WriteLine("Index");
-            foreach (DetalleProducto dp in db.DetalleProductos.ToList()){
+            return View(db.Compras.ToList());
+        }
+
+        // GET: Compras/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Compra compra = db.Compras.Find(id);
+            if (compra == null)
+            {
+                return HttpNotFound();
+            }
+            return View(compra);
+        }
+
+        // GET: Compras/Create
+        public ActionResult Create(int id)
+        {
+            Debug.WriteLine("Create");
+            foreach (DetalleProducto dp in db.DetalleProductos.ToList())
+            {
                 if (dp.Id == id)
                 {
                     Debug.WriteLine("Llego");
@@ -39,10 +61,12 @@ namespace ElectrodomesticosWeb.Controllers
                         Debug.WriteLine(listaCompras.Count);
                         break;
                     }
-                    else {
+                    else
+                    {
                         listaCompras = (List<DetalleCompra>)Session["DetalleProductos"];
-                        foreach (DetalleCompra dCompra in listaCompras) {
-                            Debug.WriteLine("comparar: "+ dCompra.DetalleProducto.Id +" : "+ dp.Id);
+                        foreach (DetalleCompra dCompra in listaCompras)
+                        {
+                            Debug.WriteLine("comparar: " + dCompra.DetalleProducto.Id + " : " + dp.Id);
                             if (dCompra.DetalleProducto.Id == dp.Id)
                             {
                                 encontrado = true;
@@ -66,27 +90,6 @@ namespace ElectrodomesticosWeb.Controllers
                 }
             }
             return View(listaCompras.ToList());
-        }
-
-        // GET: Compras/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Compra compra = db.Compras.Find(id);
-            if (compra == null)
-            {
-                return HttpNotFound();
-            }
-            return View(compra);
-        }
-
-        // GET: Compras/Create
-        public ActionResult Create()
-        {
-            return View();
         }
 
         // POST: Compras/Create
