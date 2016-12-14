@@ -7,6 +7,7 @@
 <h2>Create</h2>
 
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -55,6 +56,9 @@
     </div>
 }
 
+<div class="boton">
+    @Html.ActionLink("Seguir comprando", "Index","Home")
+</div>
 
 <table class="table table-hover">
 
@@ -117,30 +121,7 @@
             </td>
         </tr>
     }
-<tr class="success">
-    <td>
-        imagen
-    </td>
 
-    <td>
-        Nombre producto
-    </td>
-
-    <td>
-        marca
-    </td>
-    <td>
-        color
-    </td>
-
-    <td>
-        cantidad
-    </td>
-
-    <td>
-        precio
-    </td>
-</tr>
 
 
 
@@ -150,9 +131,9 @@
 </table>
 
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -101,8 +101,19 @@ namespace ElectrodomesticosWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                List<DetalleCompra> listaDetalle = (List<DetalleCompra>)Session["DetalleProductos"];
                 db.Compras.Add(compra);
                 db.SaveChanges();
+
+                Debug.WriteLine("id Compra ultimo: " + compra.Id);
+                foreach (DetalleCompra dc in listaDetalle) {
+                    dc.CompraId = compra.Id;
+                    dc.Compra = compra;
+                    Debug.WriteLine("Detalla compra cantidad: " + dc.Cantidad);
+                    db.DetalleCompras.Add(dc);
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
 
