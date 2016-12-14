@@ -60,7 +60,7 @@ namespace ElectrodomesticosWeb.Controllers
             if (ModelState.IsValid)
             {
 
-             /*   if (upload != null && upload.ContentLength > 0)
+                if (upload != null && upload.ContentLength > 0)
                 {
 
                     string pic = System.IO.Path.GetFileName(upload.FileName);
@@ -79,7 +79,7 @@ namespace ElectrodomesticosWeb.Controllers
                     
 
                 }
-                */
+                
 
                 db.DetalleProductos.Add(detalleProducto);
                 db.SaveChanges();
@@ -117,7 +117,7 @@ namespace ElectrodomesticosWeb.Controllers
             if (ModelState.IsValid)
             {
 
-                if (upload != null && upload.ContentLength > 0)
+                /*if (upload != null && upload.ContentLength > 0)
                 {
 
                     string pic = System.IO.Path.GetFileName(upload.FileName);
@@ -141,7 +141,7 @@ namespace ElectrodomesticosWeb.Controllers
 
 
                 }
-
+                */
                 
 
                 db.Entry(detalleProducto).State = EntityState.Modified;

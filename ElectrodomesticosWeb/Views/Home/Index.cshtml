@@ -60,7 +60,7 @@
            
         }
 
-         input[type=submit]{
+         .add{
 
    background: #e81717;
   background-image: -webkit-linear-gradient(top, #e81717, #f0bdbd);
@@ -95,7 +95,7 @@
  
 
 
-  input[type=submit]:hover {
+  .add:hover {
       background: #990b0b;
   background-image: -webkit-linear-gradient(top, #990b0b, #c295b4);
   background-image: -moz-linear-gradient(top, #990b0b, #c295b4);
@@ -226,11 +226,14 @@
 
 
 
+            <div class="add">
+
                 <dt>
-                    @Html.ActionLink("Añadir al carrito", "create", "Compras", new { Id = item.Id}, null)
+
+                    @Html.ActionLink("Añadir al carrito", "create", "Compras", new { Id = item.Id }, null)
                 </dt>
 
-
+            </div>
          
 
 
